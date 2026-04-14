@@ -31,6 +31,55 @@ This project is an AI-based system that generates personalized study plans for s
 3. Open browser and go to:
    http://127.0.0.1:5000/
 
+## Team Members 
+1. Gurkirat Kaur
+Work-
+
+Built ML model (Logistic Regression)
+Data preprocessing + feature selection
+Implemented scaling
+Developed Flask backend
+Integrated frontend + backend
+
+
+2. Abeer Edwin 
+Work:
+
+Designed UI (HTML, CSS)
+Created input form
+Displayed output (study plan)
+Improved UI (colors, layout)
+
+
+
+3. Aryan Sharma
+Work:
+
+Collected dataset (Kaggle)
+Understood dataset features
+Helped in cleaning data
+Assisted in feature selection
+
+
+4 Kartik Rustagi 
+Work:
+
+Designed project idea
+Tested model with different inputs
+Checked accuracy
+Verified outputs
+Helped debug errors
+
+5.Shaurya Singh 
+Work:
+Created GitHub repo
+Uploaded project files
+Wrote README
+Prepared final report & PPT
+
+
+
+
 ##  Model Used
 Logistic Regression
 
