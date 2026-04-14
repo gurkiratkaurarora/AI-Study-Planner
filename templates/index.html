@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Study Plan Generator</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            text-align: center;
+            padding: 40px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 350px;
+            margin: auto;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #4facfe;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #007bff;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>AI Study Planner</h2>
+
+    <input id="s1a" placeholder="Sem 1 Approved"><br>
+    <input id="s2a" placeholder="Sem 2 Approved"><br>
+    <input id="s1e" placeholder="Sem 1 Enrolled"><br>
+    <input id="s2e" placeholder="Sem 2 Enrolled"><br>
+    <input id="s1ev" placeholder="Sem 1 Evaluations"><br>
+    <input id="s2ev" placeholder="Sem 2 Evaluations"><br>
+
+    <button onclick="predict()">Generate Plan</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function predict() {
+
+    let data = {
+        sem1_approved: Number(document.getElementById("s1a").value),
+        sem2_approved: Number(document.getElementById("s2a").value),
+        sem1_enrolled: Number(document.getElementById("s1e").value),
+        sem2_enrolled: Number(document.getElementById("s2e").value),
+        sem1_evaluations: Number(document.getElementById("s1ev").value),
+        sem2_evaluations: Number(document.getElementById("s2ev").value)
+    };
+
+    fetch("/predict", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+
+        let labels = ["Dropout Risk", "Average", "Good"];
+
+        document.getElementById("result").innerHTML =
+            "Prediction: " + labels[data.prediction] + "<br><br>" +
+            "Level: " + data.study_plan.level + "<br>" +
+            "Study Hours: " + data.study_plan.study_hours + "<br>" +
+            "Focus: " + data.study_plan.focus + "<br>" +
+            "Tip: " + data.study_plan.tip;
+    })
+    .catch(error => {
+        document.getElementById("result").innerHTML = "Error connecting!";
+    });
+}
+</script>
