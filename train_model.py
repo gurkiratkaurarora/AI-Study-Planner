@@ -55,7 +55,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 model = LogisticRegression(max_iter=300)
 model.fit(X_train, y_train)
 
-#nodel evaluation
+#model evaluation
 y_pred = model.predict(X_test)
 
 print("\nAccuracy:", accuracy_score(y_test, y_pred))
